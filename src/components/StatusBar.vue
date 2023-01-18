@@ -1,21 +1,24 @@
 <script setup lang="ts">
-import PocketBase from 'pocketbase';
 import { reactive } from 'vue'
-const props = defineProps({'pb': PocketBase})
 
-type state = {
+import PocketBase from 'pocketbase';
+const props = defineProps({
+  pb: { type: PocketBase, required: true }
+})
+
+interface state {
   loggedIn: boolean,
   username: string
 }
 
 const state = reactive({
-  loggedIn: props.pb?.authStore.isValid || false,
-  username: props.pb?.authStore.model?.username || ""
+  loggedIn: props.pb.authStore.isValid,
+  username: props.pb.authStore.model?.username || "Unregistered"
 })
 
-props.pb?.authStore.onChange(()=>{
-  state.loggedIn = props.pb?.authStore.isValid || false;
-  state.username = props.pb?.authStore.model?.username;
+props.pb.authStore.onChange(()=>{
+  state.loggedIn = props.pb.authStore.isValid;
+  state.username = props.pb.authStore.model?.username || "Unregistered";
 })
 
 </script>

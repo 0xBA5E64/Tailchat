@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import PocketBase from 'pocketbase'
 
-const props = defineProps(['pb'])
+const props = defineProps({
+  pb: { type: PocketBase, required: true }
+})
 
 const username = ref('');
 const password = ref('');
@@ -14,19 +17,19 @@ function logout_user() {
   props.pb.authStore.clear();
 }
 
-type state = {
+interface state {
   loggedIn: boolean,
   username: string
 }
 
 const state = reactive({
-  loggedIn: props.pb?.authStore.isValid || false,
-  username: props.pb?.authStore.model?.username || ""
+  loggedIn: props.pb.authStore.isValid,
+  username: props.pb.authStore.model?.username || "Unregistered"
 })
 
-props.pb?.authStore.onChange(()=>{
-  state.loggedIn = props.pb?.authStore.isValid || false;
-  state.username = props.pb?.authStore.model?.username;
+props.pb.authStore.onChange(()=>{
+  state.loggedIn = props.pb.authStore.isValid;
+  state.username = props.pb.authStore.model?.username || "Unregistered";
 })
 
 </script>

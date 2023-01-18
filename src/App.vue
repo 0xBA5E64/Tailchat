@@ -4,13 +4,12 @@ import { RouterLink, RouterView } from 'vue-router'
 import StatusBar from './components/StatusBar.vue'
 
 import { pb } from './pocketbase'
-const rpb = reactive(pb);
 
 </script>
 
 <template>
-  <RouterView :pb="rpb" />
-  <StatusBar :pb="rpb" />
+  <RouterView :pb="pb" />
+  <StatusBar :pb="pb" />
 </template>
 
 <style scoped>
