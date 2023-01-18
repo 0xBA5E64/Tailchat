@@ -5,6 +5,11 @@
 <template>
   <main>
     <h1>Welcome to<br><span>TailChat.</span></h1>
+    <div>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="login">Log In</RouterLink>
+      <RouterLink to="chat">Chat</RouterLink>
+    </div>
   </main>
 </template>
 
@@ -12,9 +17,24 @@
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+a {
+  color: #48F;
+  text-decoration: none;
+  padding-right: 8px;
+  border-right: solid #888 1px;
+  margin-right: 8px;
+}
+
+a:last-of-type {
+  padding-right: 0px;
+  border-right: solid #888 0px;
+  margin-right: 0px;
 }
 
 h1 {

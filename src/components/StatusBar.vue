@@ -1,10 +1,29 @@
 <script setup lang="ts">
+import PocketBase from 'pocketbase';
+import { reactive } from 'vue'
+const props = defineProps({'pb': PocketBase})
+
+type state = {
+  loggedIn: boolean,
+  username: string
+}
+
+const state = reactive({
+  loggedIn: props.pb?.authStore.isValid || false,
+  username: props.pb?.authStore.model?.username || ""
+})
+
+props.pb?.authStore.onChange(()=>{
+  state.loggedIn = props.pb?.authStore.isValid || false;
+  state.username = props.pb?.authStore.model?.username;
+})
 
 </script>
 
 <template>
   <div>
-    <h1>This is the Statusbar</h1>
+    <h1 v-if="state.loggedIn">Logged in as: {{ state.username || "none" }}</h1>
+    <h1 v-else>Not logged in</h1>
   </div>
 </template>
 
