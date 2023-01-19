@@ -1,36 +1,32 @@
-# tailchat
+# 🐍 tailchat
 
-This template should help get you started developing with Vue 3 in Vite.
+Possibly a quite recklessly basic chatting app, built for lizard communication 🦎.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Built on [Vue.js](https://vuejs.org/) and [Pocketbase](https://pocketbase.io/), "Tailchat" follows in the footsteps of [dyablog](https://github.com/0xBA5E64/dyablog) as my second adventure into more dynamic web development, all but guaranteed to be shock-full of beginner mistakes and security blunders. A trial by fire I hope it will be, for this winter has been especially harsh for us ectotherms.
 
 ## Project Setup
 
-```sh
-npm install
+This project uses [Vite](https://vitejs.dev/) for running its frontend and [Pocketbase](https://pocketbase.io/) for the backend, both should be run simultaneously in separate shells *(because I don't know yet know how this is supposed to work, barring bringing in tmux as a vital part of your server architecture)*
+
+## Clone and enter the repo
+
 ```
+git clone https://github.com/0xBA5E64/Tailchat.git
+cd Tailchat
+npm install
+mkdir backend && cd backend
+wget https://github.com/pocketbase/pocketbase/releases/download/v0.11.3/pocketbase_0.11.3_linux_amd64.zip
+7z x pocketbase_0.11.3_linux_amd64.zip pocketbase
+rm pocketbase_0.11.3_linux_amd64.zip
+```
+
 
 ### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
+# And, in a seperate shell simultaniously:
+npm run backend
 ```
 
 ### Type-Check, Compile and Minify for Production
