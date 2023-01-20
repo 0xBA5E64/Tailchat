@@ -24,14 +24,14 @@ props.pb.authStore.onChange(()=>{
 </script>
 
 <template>
-  <div>
-    <h1 v-if="state.loggedIn">Logged in as: {{ state.username || "none" }}</h1>
-    <h1 v-else>Not logged in</h1>
+  <div id="status-bar">
+    <p class="item logged-in" v-if="state.loggedIn">Logged in as: <span>{{ state.username || "none" }}</span></p>
+    <p class="item not-logged-in" v-else>Not logged in</p>
   </div>
 </template>
 
 <style scoped>
-div {
+#status-bar {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -53,8 +53,31 @@ div {
   text-transform: uppercase;
 }
 
-div * {
+#status-bar .item {
+  display: inline-block;
   margin: 0;
   font-size: 12px;
+
+  border-radius: 32px;
+  border: solid 1px #444;
+  padding: 2px 8px;
+}
+
+#status-bar .logged-in {
+  color: #004;
+  background: #88F;
+  padding: 2px 2px;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+}
+
+#status-bar .logged-in span {
+  display: inline-block;
+  color: #AAF;
+  background: #222;
+  border-radius: 32px;
+  padding: 2px 8px;
+  margin-left: 4px;
 }
 </style>
