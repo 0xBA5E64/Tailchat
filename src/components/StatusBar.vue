@@ -39,6 +39,7 @@ props.pb.authStore.onChange(()=>{
   border-top: 1px #444 solid;
   width: 100%;
   height: 40px;
+  z-index: 2;
 
   padding: 0 16px;
   box-sizing: border-box;
